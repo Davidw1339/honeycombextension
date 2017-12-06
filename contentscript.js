@@ -184,5 +184,4 @@ function reorderHTML(parameter) {
 //     }
 // );
 
-
 $(document).ready(reorderHTML(reorderList(0.33,0.33,0.33,"low")));
