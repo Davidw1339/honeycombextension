@@ -16,9 +16,9 @@
     "options_page" : "options.html",
 
     "content_scripts" : [{
-    "matches": ["http://*/*","https://*/*"],
-    "css" : ["style.css"],
-    "js" : ["jquery-3.2.1.min.js","popup.js"]
+        "matches": ["http://*/*","https://*/*"],
+        "css" : ["style.css"],
+        "js" : ["jquery-3.2.1.min.js","popup.js", "contentscript.js"]
     }],
 
     "permissions": ["tabs", "http://*/*", "https://*/*"]
