@@ -129,7 +129,6 @@ function sortRankings(rankings, resultIds) {
      for (var i = 0; i < rankings.length; i++) {
           for (var q = 1; q < rankings.length - i; q++) {
                if (rankings[q-1] < rankings[q]) {
-
                     //sort rankings
                     temp = rankings[q-1]
                     rankings[q-1] = rankings[q]
@@ -145,7 +144,6 @@ function sortRankings(rankings, resultIds) {
 
      console.log(resultIds)
      return resultIds
-
 }
 
 function reorderHTML(parameter) {
@@ -159,6 +157,5 @@ function reorderHTML(parameter) {
         }
     }
 }
-
 
 $(document).ready(reorderHTML(reorderList(0.33,0.33,0.33,"low")));
