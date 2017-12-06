@@ -1,4 +1,7 @@
-
+body {
+	height: 600px;
+	width: 600px;
+}
 h1 {
 	color: orange;
 	font-family: 'Muli', sans-serif;
