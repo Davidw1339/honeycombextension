@@ -156,32 +156,4 @@ function reorderHTML(parameter) {
     }
 }
 
-// chrome.runtime.onMessage.addListener(
-//   function(request, sender, sendResponse) {
-//     console.log(sender.tab ?
-//                 "from a content script:" + sender.tab.url :
-//                 "from the extension");
-//     if (request.greeting == "hello")
-//       sendResponse({farewell: "goodbye"});
-//   });
-
-
-// chrome.runtime.onMessage.addListener(
-//     function(request, sender, sendResponse) {
-//         switch (request.directive) {
-//         case "popup-click":
-//             // execute the content script
-//             chrome.tabs.executeScript(null, { // defaults to the current tab
-//                 file: "contentscript.js", // script to inject into page and run in sandbox
-//                 allFrames: true 
-//             });
-//             sendResponse({}); // sending back empty response to sender
-//             break;
-//         default:
-//             // helps debug when request directive doesn't match
-//             alert("Unmatched request of '" + request + "' from script to background.js from " + sender);
-//         }
-//     }
-// );
-
 $(document).ready(reorderHTML(reorderList(0.33,0.33,0.33,"low")));

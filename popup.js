@@ -34,7 +34,7 @@ function toDisplayLTH() {
 }
 function toDisplayBS() {
     var x = document.getElementById("bs");
-    if ($('input[type=checkbox]').prop('checked') && x.style.display === "none") {
+    if ($('input[type=checkbox]').prop('checked')) {
         x.style.display = "block";
     } else {
         x.style.display = "none";
@@ -64,21 +64,3 @@ function toDisplayNEW() {
         x.style.display = "none";
     }
 }
-
-// chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
-//     chrome.tabs.sendMessage(tabs[0].id, {greeting: "hello"}, function(response) {
-//         console.log(response.farewell);
-//     });
-// });
-
-
-
-// function clickHandler(e) {
-//     chrome.runtime.sendMessage({directive: "popup-click"}, function(response) {
-//         this.close(); // close the popup when the background finishes processing request
-//     });
-// }
-
-// document.addEventListener('DOMContentLoaded', function () {
-//     document.getElementById('click-me').addEventListener('click', clickHandler);
-// })
