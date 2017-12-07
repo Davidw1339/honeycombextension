@@ -1,5 +1,14 @@
 $(function() {
-    $( "#sortable" ).sortable();
+    $( "#sortable" ).sortable(); ({
+        start: function(event, ui) {
+            var start_pos = ui.item.index();
+            ui.item.data('start_pos', start_pos);
+        },
+        update: function (event, ui) {
+            var start_pos = ui.item.data('start_pos');
+            var end_pos = ui.item.index();
+        }
+    });
     $( "#sortable" ).disableSelection();
 });
 
@@ -34,7 +43,7 @@ function toDisplayLTH() {
 }
 function toDisplayBS() {
     var x = document.getElementById("bs");
-    if ($('input[type=checkbox]').prop('checked')) {
+    if ($('input[type=checkbox]').prop('checked') && x.style.display === "none") {
         x.style.display = "block";
     } else {
         x.style.display = "none";
