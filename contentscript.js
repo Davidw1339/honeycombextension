@@ -157,4 +157,5 @@ function reorderHTML(parameter) {
     }
 }
 
+//Change parameters based on popup.js
 $(document).ready(reorderHTML(reorderList(0.33,0.33,0.33,"low")));
