@@ -1,5 +1,5 @@
 $(function() {
-    $( "#sortable" ).sortable(); // ({
+    $( "#sortable" ).sortable(); //({
     //     start: function(event, ui) {
     //         var start_pos = ui.item.index();
     //         ui.item.data('start_pos', start_pos);
