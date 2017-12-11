@@ -13,54 +13,57 @@ $( document ).ready(function() {
 });
 
 function toDisplayHTL() {
-    var x = document.getElementById("htl");
-    var y = document.getElementById("lth");
-    if ($('input[type=checkbox]').prop('checked') && x.style.display === "none") {
-        x.style.display = "block";
-        y.style.display = "none";
-    } else if (!$('input[type=checkbox]').prop('checked')) {
-        x.style.display = "none";
+    var a = document.getElementById("htl");
+    var b = document.getElementById("lth");
+    if ($('#hitolo').prop('checked')) {
+        $(a).show();
+        $('#lotohi').prop('checked', false);
+        $(b).hide();
+    } else if ($('#hitolo').prop('checked') == false) {
+        $(a).hide();
     }
 }
 function toDisplayLTH() {
-    var x = document.getElementById("lth");
-    var y = document.getElementById('htl');
-    if ($('input[type=checkbox]').prop('checked') && x.style.display === "none") {
-        x.style.display = "block";
-        y.style.display = "none";
-    } else if (!$('input[type=checkbox]').prop('checked')) {
-        x.style.display = "none";
+    var c = document.getElementById("lth");
+    var d = document.getElementById("htl");
+    if ($('#lotohi').prop('checked')) {
+        $(c).show();
+        $('#hitolo').prop('checked', false);
+        $(d).hide()
+    } else if ($('#lotohi').prop('checked') == false) {
+        $(c).hide();
     }
 }
 function toDisplayBS() {
-    var x = document.getElementById("bs");
-    if ($('input[type=checkbox]').prop('checked') && x.style.display === "none") {
-        x.style.display = "block";
-    } else {
-        x.style.display = "none";
+    var e = document.getElementById("bs");
+    if ($('#bese').prop('checked')) {
+        $(e).show();
+    } else if ($('#bese').prop('checked') == false) {
+        $(e).hide();
     }
 }
 function toDisplayTR() {
-    var x = document.getElementById("tr");
-    if ($('input[type=checkbox]').prop('checked') && x.style.display === "none") {
-        x.style.display = "block";
-    } else {
-        x.style.display = "none";
+    var f = document.getElementById("tr");
+    if ($('#tora').prop('checked')) {
+        $(f).show();
+    } else if ($('#tora').prop('checked') == false) {
+        $(f).hide();
     }
 }
+
 function toDisplayREL() {
-    var x = document.getElementById("relevant");
-    if ($('input[type=checkbox]').prop('checked') && x.style.display === "none") {
-        x.style.display = "block";
-    } else {
-        x.style.display = "none";
-    }
+    var g = document.getElementById("relevant");
+    if ($('#rel').prop('checked')) {
+        $(g).show();
+    } else if ($('#rel').prop('checked') == false) {
+        $(g).hide();
+    } 
 }
 function toDisplayNEW() {
-    var x = document.getElementById("new");
-    if ($('input[type=checkbox]').prop('checked') && x.style.display === "none") {
-        x.style.display = "block";
-    } else {
-        x.style.display = "none";
+    var h = document.getElementById("new");
+    if ($('#nw').prop('checked')) {
+        $(h).show();
+    } else if ($('#nw').prop('checked') == false) {
+        $(h).hide();
     }
 }

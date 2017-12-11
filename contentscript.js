@@ -7,6 +7,7 @@
 ---->RETURNS new reordered list with id's
 */
 
+
 function reorderList(woPrice, woNumRatings, woRating, highLowPrices) {
      var items = $('.s-result-item.s-result-card-for-container.a-declarative.celwidget');
      //rankings to sort array
