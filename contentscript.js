@@ -142,16 +142,41 @@ function sortRankings(rankings, resultIds) {
 }
 
 function reorderHTML(parameter) {
-    return function() {
-        var result_a = "#result_" + parameter[0];
-        $(result_a).insertBefore($("#result_0"));
-        for (i = 1; i < parameter.length; i++) {
-            var result_b = "#result_" + parameter[i];
-            $(result_b).insertAfter($(result_a));
-            result_a = result_b;
-        }
+    var result_a = "#result_" + parameter[0];
+    $(result_a).insertBefore($("#result_0"));
+    for (i = 1; i < parameter.length; i++) {
+        var result_b = "#result_" + parameter[i];
+        $(result_b).insertAfter($(result_a));
+        result_a = result_b;
     }
 }
 
 //Change parameters based on popup
-$(document).ready(reorderHTML(reorderList(0.33,0.33,0.33,"low")));
+$(document).ready(function() {
+    chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
+        var tags = request.sorted_data;
+        var weights = [0.0, 0.0, 0.0, "low"];
+        var static_weights = [0.5, 0.25, 0.1];
+
+        for (var i = 0; i < tags.length; i++) {
+            if (tags[i] == "htl" || tags[i] == "lth") {
+                weights[0] = static_weights[i];
+            }
+            if (tags[i] == "bs") {
+                weights[1] = static_weights[i];
+            }
+            if (tags[i] == "tr") {
+                weights[2] = static_weights[i];
+            }
+        }
+        
+        if (tags.includes('htl')) {
+            weights[3] = "high";
+        } else {
+            weights[3] = "low";
+        }
+        
+        console.log(weights);
+        reorderHTML(reorderList(weights[0], weights[1], weights[2], weights[3]));
+    });
+});
