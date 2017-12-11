@@ -1,10 +1,10 @@
-
 /**
 ->reorder the list with new rankings
 ->add parameters with weight on each option
 ->highLowPrices is to see which it is ordered by
 ---->RETURNS new reordered list with id's
 */
+
 
 function reorderList(woPrice, woNumRatings, woRating, highLowPrices) {
     var items = $('.s-result-item.s-result-card-for-container.a-declarative.celwidget');
@@ -13,7 +13,6 @@ function reorderList(woPrice, woNumRatings, woRating, highLowPrices) {
 
     //ids for the array rankings
     var idsReordered = []
-
     var highestNumReviews = getHighestNumReviews(items)
     var highestPrice = getHighestPrice(items)
 
@@ -22,10 +21,10 @@ function reorderList(woPrice, woNumRatings, woRating, highLowPrices) {
 
         var item = $(items[i])
 
-        //get the title of the item
+        //<-----------get the title of the item----------->
         var title = item.find(".a-link-normal.s-access-detail-page.s-color-twister-title-link.a-text-normal")
 
-        //get the average of the whole prices
+        //<--------get the average of the whole prices--------->
         var wholePriceArray = item.find('.sx-price-whole')
         var sum = 0
         for (var q = 0; q < wholePriceArray.length; q++) {
@@ -39,13 +38,12 @@ function reorderList(woPrice, woNumRatings, woRating, highLowPrices) {
             var wholePrice = (Math.round(sum))
             sum = 0
 
-            //get the number of ratings per item
+            //<--------get the number of ratings per item--------->
             var numberOfRatings = parseInt(item.find('.a-size-small.a-link-normal.a-text-normal').text())
 
-            //get the average rating per item
+            //<--------get the average rating per item--------->
             var averageRatingBlock = item.find('.a-icon-alt')
             var averageRating = -1
-        
             //if it doesn't have a rating, then set average and num ratings to 0
             if (averageRatingBlock.length >= 1) {
                 if (typeof averageRatingBlock[1] == 'undefined') {
@@ -54,14 +52,15 @@ function reorderList(woPrice, woNumRatings, woRating, highLowPrices) {
                 } else if (averageRatingBlock[1].textContent.indexOf(".") != -1) {
                     averageRating = averageRatingBlock[1].textContent.slice(0,3).valueOf()
                 } else {
-                averageRating = averageRatingBlock[1].textContent.slice(0,1).valueOf()
+                    averageRating = averageRatingBlock[1].textContent.slice(0,1).valueOf()
                 }
-			}
-
+            }
+            
             if (typeof averageRatingBlock[1] == 'undefined') {
                 averageRating = 0
                 numberOfRatings = 0
             }
+
 
             //create a ranking for the current item
             var rankingRating = 0
@@ -74,16 +73,14 @@ function reorderList(woPrice, woNumRatings, woRating, highLowPrices) {
             } else {
                 rankingRating += ((1 - (wholePrice/highestPrice)) * 100 * woPrice)
             }
-            
             rankingRating += (numberOfRatings/highestNumReviews) * 100 * woNumRatings
             rankingRating += averageRating * 20 * woRating
 
             //adding elements to be sorted
             orderRankings.push(rankingRating)
             idsReordered.push(i)
-        }
     }
-
+}
     //return sorted elements
     console.log(sortRankings(orderRankings,idsReordered))
     return sortRankings(orderRankings,idsReordered)
@@ -140,8 +137,8 @@ function sortRankings(rankings, resultIds) {
         }
     }
 
-     console.log(resultIds)
-     return resultIds
+    console.log(resultIds)
+    return resultIds
 }
 
 function reorderHTML(parameter) {
@@ -156,4 +153,5 @@ function reorderHTML(parameter) {
     }
 }
 
+//Change parameters based on popup
 $(document).ready(reorderHTML(reorderList(0.33,0.33,0.33,"low")));
