@@ -10,6 +10,7 @@ $( document ).ready(function() {
 	$("#tora").click(toDisplayTR);
 	$("#relevant").click(toDisplayREL);
 	$("#nw").click(toDisplayNEW);
+    $("#sort_button").click(toSort);
 });
 
 function toDisplayHTL() {
@@ -73,7 +74,7 @@ function toSort() {
     var children = $("#sortable").children().each(function(){
         if($($(this)[0]).css('display') != "none") {
             tags.push(this.id);
-            // console.log(tags);
+            //console.log(tags);
         }
     });
 }
