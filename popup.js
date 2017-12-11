@@ -74,7 +74,6 @@ function toSort() {
     var children = $("#sortable").children().each(function(){
         if($($(this)[0]).css('display') != "none") {
             tags.push(this.id);
-            //console.log(tags);
         }
     });
 }
