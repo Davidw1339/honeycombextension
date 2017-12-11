@@ -8,7 +8,7 @@ $( document ).ready(function() {
 	$("#lotohi").click(toDisplayLTH);
 	$("#bese").click(toDisplayBS);
 	$("#tora").click(toDisplayTR);
-	$("#relevant").click(toDisplayREL);
+	$("#rel").click(toDisplayREL);
 	$("#nw").click(toDisplayNEW);
 });
 
@@ -57,7 +57,7 @@ function toDisplayREL() {
         $(g).show();
     } else if ($('#rel').prop('checked') == false) {
         $(g).hide();
-    } 
+    }
 }
 function toDisplayNEW() {
     var h = document.getElementById("new");
