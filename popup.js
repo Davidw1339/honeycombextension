@@ -1,24 +1,6 @@
 $(function() {
-    $( "#sortable" ).sortable(); //({
-    //     start: function(event, ui) {
-    //         var start_pos = ui.item.index();
-    //         ui.item.data('start_pos', start_pos);
-    //     },
-    //     change: function(event, ui) {
-    //         var start_pos = ui.item.data('start_pos');
-    //         var index = ui.placeholder.index();
-    //         console.log(index);
-    //         if (start_pos < index) {
-    //             $('#sortable li:nth-child(' + index + ')').addClass('highlights');
-    //         } else {
-    //             $('#sortable li:eq(' + (index + 1) + ')').addClass('highlights');
-    //         }
-    //     },
-    //     update: function(event, ui) {
-    //         $('#sortable li').removeClass('highlights');
-    //     }
-    // });
-    // $( "#sortable" ).disableSelection();
+    $( "#sortable" ).sortable();
+    $( "#sortable" ).disableSelection();
 });
 
 $( document ).ready(function() {
@@ -26,8 +8,7 @@ $( document ).ready(function() {
     $("#lotohi").click(toDisplayLTH);
     $("#bese").click(toDisplayBS);
     $("#tora").click(toDisplayTR);
-    $("#relevant").click(toDisplayREL);
-    $("#nw").click(toDisplayNEW);
+    $("#sort_button").click(toSort);
 });
 
 function toDisplayHTL() {
@@ -66,19 +47,13 @@ function toDisplayTR() {
         x.style.display = "none";
     }
 }
-function toDisplayREL() {
-    var x = document.getElementById("relevant");
-    if ($('input[type=checkbox]').prop('checked') && x.style.display === "none") {
-        x.style.display = "block";
-    } else {
-        x.style.display = "none";
-    }
-}
-function toDisplayNEW() {
-    var x = document.getElementById("new");
-    if ($('input[type=checkbox]').prop('checked') && x.style.display === "none") {
-        x.style.display = "block";
-    } else {
-        x.style.display = "none";
-    }
+function toSort() {
+    console.log("sorted");
+    var tags = [];
+    var children = $("#sortable").children().each(function(){
+        if($($(this)[0]).css('display') != "none") {
+            tags.push(this.id);
+            // console.log(tags);
+        }
+    });
 }
