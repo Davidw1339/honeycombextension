@@ -7,12 +7,14 @@
 
 
 function reorderList(woPrice, woNumRatings, woRating, highLowPrices) {
+     //using jquery to get specific items on the page
     var items = $('.s-result-item.s-result-card-for-container.a-declarative.celwidget');
     //rankings to sort array
     var orderRankings = []
 
     //ids for the array rankings
     var idsReordered = []
+    //calling methods we made for highest num reviews and highest price for the items
     var highestNumReviews = getHighestNumReviews(items)
     var highestPrice = getHighestPrice(items)
 
@@ -55,7 +57,8 @@ function reorderList(woPrice, woNumRatings, woRating, highLowPrices) {
                     averageRating = averageRatingBlock[1].textContent.slice(0,1).valueOf()
                 }
             }
-            
+
+            //just some safety here
             if (typeof averageRatingBlock[1] == 'undefined') {
                 averageRating = 0
                 numberOfRatings = 0
@@ -91,8 +94,10 @@ function getHighestPrice(items) {
     highest = 0
     for(var i = 0; i < items.length; i++) {
         var item = $(items[i])
+        //getting the whole price for each item
         var wholePriceArray = item.find('.sx-price-whole')
         var sum = 0
+        //if the website shows more than one price, takes the average of the prices
         for (var q = 0; q < wholePriceArray.length; q++) {
             sum += parseInt(wholePriceArray[q].textContent)
         }
@@ -103,6 +108,7 @@ function getHighestPrice(items) {
         }
         sum = 0
     }
+    //returns highest price
     return highest
 }
 
@@ -111,6 +117,7 @@ function getHighestNumReviews(items) {
     highest = 0
     for(var i = 0; i < items.length; i++) {
         var item = $(items[i])
+        //getting the number of reviews for each item
         var numberOfRatings = parseInt(item.find('.a-size-small.a-link-normal.a-text-normal').text())
         if (highest < numberOfRatings) {
             highest = numberOfRatings
@@ -121,6 +128,7 @@ function getHighestNumReviews(items) {
 
 function sortRankings(rankings, resultIds) {
     //using a bubble sort
+    //doesn't matter what type of sort we use as we are sorting a small number of elements
     for (var i = 0; i < rankings.length; i++) {
         for (var q = 1; q < rankings.length - i; q++) {
             if (rankings[q-1] < rankings[q]) {
@@ -142,6 +150,8 @@ function sortRankings(rankings, resultIds) {
 }
 
 function reorderHTML(parameter) {
+     //we reorder the element's html on the page based off the rankings determined
+     //by the first part of the script
     var result_a = "#result_" + parameter[0];
     $(result_a).insertBefore($("#result_0"));
     for (i = 1; i < parameter.length; i++) {
@@ -153,11 +163,14 @@ function reorderHTML(parameter) {
 
 //Change parameters based on popup
 $(document).ready(function() {
+     //connecting the front end to backend highestNumReviews
     chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
         var tags = request.sorted_data;
         var weights = [0.0, 0.0, 0.0, "low"];
+        //giving static weights to each of the 3 chosen options based off order
         var static_weights = [0.5, 0.25, 0.1];
 
+        //checking for each of the tags that are selected and giving it a specific weight determined earlier
         for (var i = 0; i < tags.length; i++) {
             if (tags[i] == "htl" || tags[i] == "lth") {
                 weights[0] = static_weights[i];
@@ -169,7 +182,8 @@ $(document).ready(function() {
                 weights[2] = static_weights[i];
             }
         }
-        
+
+        //chosing high to low or low to high
         if (tags.includes('htl')) {
             weights[3] = "high";
         } else {
@@ -177,6 +191,7 @@ $(document).ready(function() {
         }
         
         console.log(weights);
+        //reordering the html based off the determined weights
         reorderHTML(reorderList(weights[0], weights[1], weights[2], weights[3]));
     });
 });
