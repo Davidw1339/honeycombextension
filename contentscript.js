@@ -48,7 +48,7 @@ function reorderList(woPrice, woNumRatings, woRating, highLowPrices) {
             var averageRating = -1
             //if it doesn't have a rating, then set average and num ratings to 0
             if (averageRatingBlock.length >= 1) {
-                if (typeof averageRatingBlock[1] == 'undefined') {
+                if (!(typeof averageRatingBlock[1])) {
                     averageRating = 0
                     numberOfRatings = 0
                 } else if (averageRatingBlock[1].textContent.indexOf(".") != -1) {
@@ -59,7 +59,7 @@ function reorderList(woPrice, woNumRatings, woRating, highLowPrices) {
             }
 
             //just some safety here
-            if (typeof averageRatingBlock[1] == 'undefined') {
+            if (!(typeof averageRatingBlock[1])) {
                 averageRating = 0
                 numberOfRatings = 0
             }
